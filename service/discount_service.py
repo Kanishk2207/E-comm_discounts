@@ -19,6 +19,16 @@ def validate_discount_voucher(voucher_code: str):
     return False
 
 def apply_discount_voucher(voucher_code: str):
+    """
+    Applies a discount voucher to the cart if the voucher code is valid.
+
+    Parameters:
+        voucher_code (str): The voucher code to be applied.
+
+    Updates:
+        - Adjusts the discounted cart value based on the voucher discount.
+        - Stores the applied discount details in the cart.
+    """
     for discount in all_discounts:
         if discount.discount_type == DiscountType.VOUCHER and discount.voucher_code == voucher_code:
             discounted_cart_price = all_cart_items.get("discounted_cart_value")
@@ -29,6 +39,19 @@ def apply_discount_voucher(voucher_code: str):
             all_cart_items["discounts"].append({DiscountType.VOUCHER.value:(discounted_cart_price - discount)})
 
 def validate_payment_method_discount(bank_name: str):
+    """
+    Validates and applies a bank-specific discount if the payment method matches.
+
+    Parameters:
+        bank_name (str): The name of the bank associated with the payment method.
+
+    Updates:
+        - If a valid bank discount exists, applies it to the discounted cart value.
+        - Stores the applied discount details in the cart.
+
+    Notes:
+        - Prints a message if no payment method is added to the cart.
+    """
     if "payment_info" not in all_cart_items:
         print("Please add payment method to access discount.")
     

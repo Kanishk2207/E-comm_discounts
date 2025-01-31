@@ -66,5 +66,15 @@ Enter `9` to exit the CLI.
 
 ---
 
+# Testing
+
+For testing, run 
+
+```sh
+python -m unittest test-case-1.py
+```
+
+in the root directory. You should see `ok` status in the terminal. 
+
 This project provides a simple and interactive way to explore e-commerce discount logic, voucher validation, and payment processing in a CLI environment.
 
